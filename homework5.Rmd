@@ -83,7 +83,7 @@ test.rankcor <- function(fun=rankcor){
 
   test[2] <- (as.integer(fun(x2, y2)) >= -1) && (as.integer(fun(x2, y2)) <= 1)
   
-  if(test[1] == TRUE & test[2] == TRUE){
+  if(test[1] == TRUE && test[2] == TRUE){
     return(TRUE)
   }
   else{
@@ -117,8 +117,7 @@ rankcor <-function(x, y){
   mean.y <-mean(y.ranks)
   
   # covariance.term <-cov(x.ranks - mean.x, y - mean.y)
-  covariance.term <-cov(x.ranks - mean.x, y.ranks - mean.y) #This is the change, replace y with y.ranks
-  
+  covariance.term <-cov(x.ranks - mean.x, y.ranks - mean.y) # This is the change to fix the bug, replace y                                                                with y.ranks
   sd.x <-sd(x.ranks)  
   sd.y <-sd(y.ranks)
   
@@ -134,12 +133,77 @@ test.rankcor()
 
 ### Problem 8
 
+The average rank of a vector with n observations is  always n/2 + 1/2 because the vector of ranks will always be a consecutive list containing all integers within the upper and lower bounds of the vector, making the mean be the actual middle value if n is odd and the middle of the middle 2 values if n is even.
 
+```{r}
+rankcor <-function(x, y){  
+  n <-length(x)             
+  stopifnot(length(y)==n)   
+  x.ranks <-rank(x)         
+  y.ranks <-rank(y)        
+  
+  if(n %% 2 == 0){                    
+    mean.x <- (x.ranks[n/2] + 1/2)
+    mean.y <- (y.ranks[n/2] + 1/2)
+  }
+  else{
+    mean.x <- x.ranks[(n/2) + 1/2]
+    mean.y <- y.ranks[(n/2) + 1/2]
+  }
+  covariance.term <-cov(x.ranks - mean.x, y.ranks - mean.y)
+  
+  sd.x <-sd(x.ranks)  
+  sd.y <-sd(y.ranks)
+  
+  rank.cor <- covariance.term/(sd.x*sd.y)  
+  
+  return(rank.cor)    
+}   
+
+test.rankcor()
+```
 
 ### Problem 9
+There is no reason to subtract off the mean rank before calculating the sample covariance because the value will always equal 0
 
+```{r}
+rankcor <-function(x, y){  
+  n <-length(x)             
+  stopifnot(length(y)==n)   
+  x.ranks <-rank(x)         
+  y.ranks <-rank(y)        
+  
+  covariance.term <-cov(x.ranks, y.ranks)   # Removed the subraction of then mean
+  
+  sd.x <-sd(x.ranks)  
+  sd.y <-sd(y.ranks)
+  
+  rank.cor <- covariance.term/(sd.x*sd.y)  
+  
+  return(rank.cor)    
+}   
 
+test.rankcor()
+```
 
 ### Problem 10
 
+```{r}
+rankcor <-function(x, y){  
+  n <-length(x)             
+  stopifnot(length(y)==n)   
+  x.ranks <-rank(x)         
+  y.ranks <-rank(y)        
+  
+  covariance.term <-cov(x.ranks, y.ranks)
+  
+  sd.x <-sqrt(var(x.ranks))  
+  sd.y <-sqrt(var(y.ranks))
+  
+  rank.cor <- covariance.term/(sd.x*sd.y)  
+  
+  return(rank.cor)    
+}   
 
+test.rankcor()
+```
