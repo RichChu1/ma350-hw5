@@ -17,6 +17,13 @@ https://github.com/RichChu1/ma350-hw5
 ### Problem 1
 
 ```{r}
+#' Finds the rank correlation between two vectors
+#'
+#' @param x vector of integers
+#' @param y vector of integers
+#'
+#' @return returns the rank correlation
+
 rankcor <-function(x, y){  
   n <-length(x)             # Gets the length of x
   stopifnot(length(y)==n)   # Stops if x and y are not the same length
@@ -70,6 +77,12 @@ I used 1,2,3,4 as my x and y. This works because a set has the same as itself, s
 ### Problem 5
 
 ```{r}
+#' Tests to see if rankcor() works correctly
+#'
+#' @param fun function used to find rank correlation of vectors, with a default value of rankcorr()
+#'
+#' @return returns a Boolean value, if rankcor() returns the proper value. If FALSE errors as to which is test is wrong is supplied 
+
 test.rankcor <- function(fun=rankcor){
   x <- c(2, 4, 6, 8)
   y <- c(64, 36, 16, 4)
@@ -87,12 +100,12 @@ test.rankcor <- function(fun=rankcor){
     return(TRUE)
   }
   else{
-    r <- c("Test 1 is correct","Test 2 is correct")
+    r <- c( FALSE,"Test 1 is correct","Test 2 is correct")
     if(test[1] == FALSE){
-      r[1] <- "Test 1 is incorrect"
+      r[2] <- "Test 1 is incorrect"
     }
     if(test[2] == FALSE){
-      r[2] <- "Test 2 is incorrect"
+      r[3] <- "Test 2 is incorrect"
     }
   }
   return(r)
@@ -102,11 +115,18 @@ test.rankcor()
 
 ### Problem 6
 
-The calculation of covariance.term requires the ranks of x minus the mean of the ranks of x and the ranks of y minus the mean of the ranks of y, but in the fuction it is not calculating the ranks of y instead it is using just y. This will make any vector that is not in rank order(least to greatest) will receive an error when runnning
+The calculation of covariance.term requires the ranks of x minus the mean of the ranks of x and the ranks of y minus the mean of the ranks of y, but in the function it is not calculating the ranks of y instead it is using just y. This will make any vector that is not in rank order(least to greatest) will receive an error when running
 
 ### Problem 7
 
 ```{r}
+#' Finds the rank correlation between two vectors
+#'
+#' @param x vector of integers
+#' @param y vector of integers
+#'
+#' @return returns the rank correlation
+
 rankcor <-function(x, y){  
   n <-length(x)             
   stopifnot(length(y)==n)   
@@ -136,6 +156,13 @@ test.rankcor()
 The average rank of a vector with n observations is  always n/2 + 1/2 because the vector of ranks will always be a consecutive list containing all integers within the upper and lower bounds of the vector, making the mean be the actual middle value if n is odd and the middle of the middle 2 values if n is even.
 
 ```{r}
+#' Finds the rank correlation between two vectors
+#'
+#' @param x vector of integers
+#' @param y vector of integers
+#'
+#' @return returns the rank correlation
+
 rankcor <-function(x, y){  
   n <-length(x)             
   stopifnot(length(y)==n)   
@@ -164,9 +191,17 @@ test.rankcor()
 ```
 
 ### Problem 9
+
 There is no reason to subtract off the mean rank before calculating the sample covariance because the value will always equal 0
 
 ```{r}
+#' Finds the rank correlation between two vectors
+#'
+#' @param x vector of integers
+#' @param y vector of integers
+#'
+#' @return returns the rank correlation
+
 rankcor <-function(x, y){  
   n <-length(x)             
   stopifnot(length(y)==n)   
@@ -189,6 +224,13 @@ test.rankcor()
 ### Problem 10
 
 ```{r}
+#' Finds the rank correlation between two vectors
+#'
+#' @param x vector of integers
+#' @param y vector of integers
+#'
+#' @return returns the rank correlation
+
 rankcor <-function(x, y){  
   n <-length(x)             
   stopifnot(length(y)==n)   
@@ -207,3 +249,4 @@ rankcor <-function(x, y){
 
 test.rankcor()
 ```
+
