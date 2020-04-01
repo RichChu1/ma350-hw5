@@ -1,5 +1,5 @@
 ---
-title: "Homework5"
+title: "Homework 5"
 author: "Rich Chu"
 output: html_notebook
 ---
@@ -12,7 +12,7 @@ output: html_notebook
 
 https://github.com/RichChu1/ma350-hw5
 
-## Part I
+## Part I: Think
 
 ### Problem 1
 
@@ -33,7 +33,8 @@ rankcor <-function(x, y){
   
   rank.cor <- covariance.term/(sd.x*sd.y)   # Divides the variance of the means of the ranks of x and y by the product of the standard deviation of the ranks of x and y
   
-  return(rank.cor)}   # Returns the correlation between the standard deviation of the ranks of x and y
+  return(rank.cor)    # Returns the correlation between the standard deviation of the ranks of x and y
+  }   
 
 ?cov
 ```
@@ -64,21 +65,72 @@ rankcor(x2,y2)
 ```
 I used 1,2,3,4 as my x and y. This works because a set has the same as itself, so they have a positive linear association.
 
-## Part II
+## Part II: Test
 
 ### Problem 5
 
+```{r}
+test.rankcor <- function(fun=rankcor){
+  x <- c(2, 4, 6, 8)
+  y <- c(64, 36, 16, 4)
+  
+  x2 <- c(1, 2, 3, 4)
+  y2 <- c(1, 2, 3, 4)
+  
+  test <- vector(length= 2)
+  
+  test[1] <- (as.integer(fun(x, y)) >= -1)  && (as.integer(fun(x, y)) <= 1)
 
+  test[2] <- (as.integer(fun(x2, y2)) >= -1) && (as.integer(fun(x2, y2)) <= 1)
+  
+  if(test[1] == TRUE & test[2] == TRUE){
+    return(TRUE)
+  }
+  else{
+    r <- c("Test 1 is correct","Test 2 is correct")
+    if(test[1] == FALSE){
+      r[1] <- "Test 1 is incorrect"
+    }
+    if(test[2] == FALSE){
+      r[2] <- "Test 2 is incorrect"
+    }
+  }
+  return(r)
+} 
+test.rankcor()
+```
 
 ### Problem 6
 
-
+The calculation of covariance.term requires the ranks of x minus the mean of the ranks of x and the ranks of y minus the mean of the ranks of y, but in the fuction it is not calculating the ranks of y instead it is using just y. This will make any vector that is not in rank order(least to greatest) will receive an error when runnning
 
 ### Problem 7
 
+```{r}
+rankcor <-function(x, y){  
+  n <-length(x)             
+  stopifnot(length(y)==n)   
+  x.ranks <-rank(x)         
+  y.ranks <-rank(y)        
+  
+  mean.x <-mean(x.ranks)
+  mean.y <-mean(y.ranks)
+  
+  # covariance.term <-cov(x.ranks - mean.x, y - mean.y)
+  covariance.term <-cov(x.ranks - mean.x, y.ranks - mean.y) #This is the change, replace y with y.ranks
+  
+  sd.x <-sd(x.ranks)  
+  sd.y <-sd(y.ranks)
+  
+  rank.cor <- covariance.term/(sd.x*sd.y)  
+  
+  return(rank.cor)    
+}   
 
+test.rankcor()
+```
 
-## Part III
+## Part III: Think Some More
 
 ### Problem 8
 
@@ -89,7 +141,5 @@ I used 1,2,3,4 as my x and y. This works because a set has the same as itself, s
 
 
 ### Problem 10
-
-
 
 
