@@ -1,0 +1,8 @@
+---
+title: "Homework5"
+author: "Rich Chu"
+output: html_notebook
+---
+
+# Homework 5: To Err is Human; to Rank, Divine
+
