@@ -6,3 +6,55 @@ output: html_notebook
 
 # Homework 5: To Err is Human; to Rank, Divine
 
+## Part 0
+
+### Problem 0
+
+https://github.com/RichChu1/ma350-hw5
+
+## Part I
+
+### Problem 1
+
+
+
+### Problem 2
+
+
+
+### Problem 3
+
+
+
+### Problem 4
+
+
+## Part II
+
+### Problem 5
+
+
+
+### Problem 6
+
+
+
+### Problem 7
+
+
+
+## Part III
+
+### Problem 8
+
+
+
+### Problem 9
+
+
+
+### Problem 10
+
+
+
+
