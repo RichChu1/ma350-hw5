@@ -16,18 +16,53 @@ https://github.com/RichChu1/ma350-hw5
 
 ### Problem 1
 
+```{r}
+rankcor <-function(x, y){  
+  n <-length(x)             # Gets the length of x
+  stopifnot(length(y)==n)   # Stops if x and y are not the same length
+  x.ranks <-rank(x)         # Gets the ranks of x
+  y.ranks <-rank(y)         # Gets the ranks of y
+  
+  mean.x <-mean(x.ranks)    # Gets the mean of the ranks of x
+  mean.y <-mean(y.ranks)    # Gets the mean of the ranks of y
+  
+  covariance.term <-cov(x.ranks - mean.x, y - mean.y)  # Gets the covariance of means of the ranks of x and y
+  
+  sd.x <-sd(x.ranks)  # Gets the standard deviation of the ranks of x
+  sd.y <-sd(y.ranks)  # Gets the standard deviation of the ranks of y
+  
+  rank.cor <- covariance.term/(sd.x*sd.y)   # Divides the variance of the means of the ranks of x and y by the product of the standard deviation of the ranks of x and y
+  
+  return(rank.cor)}   # Returns the correlation between the standard deviation of the ranks of x and y
 
+?cov
+```
 
 ### Problem 2
 
+```{r}
+x <- c(2, 4, 6, 8)
+y <- c(64, 36, 16, 4)
 
+rankcor(x,y)
+```
+The rank correlation is -20
 
 ### Problem 3
 
-
+The answer is wrong because the answer must be between -1 and 1 for the problem where: 
+1 if there is a perfect, positive linear association
+-1 if there is a perfect, negative linear association
 
 ### Problem 4
 
+```{r}
+x2 <- c(1, 2, 3, 4)
+y2 <- c(1, 2, 3, 4)
+
+rankcor(x2,y2)
+```
+I used 1,2,3,4 as my x and y. This works because a set has the same as itself, so they have a positive linear association.
 
 ## Part II
 

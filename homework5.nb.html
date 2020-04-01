@@ -1764,15 +1764,69 @@ summary {
 <h2>Part I</h2>
 <div id="problem-1" class="section level3">
 <h3>Problem 1</h3>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmFua2NvciA8LWZ1bmN0aW9uKHgsIHkpeyAgXG4gIG4gPC1sZW5ndGgoeCkgICAgICAgICAgICAgIyBHZXRzIHRoZSBsZW5ndGggb2YgeFxuICBzdG9waWZub3QobGVuZ3RoKHkpPT1uKSAgICMgU3RvcHMgaWYgeCBhbmQgeSBhcmUgbm90IHRoZSBzYW1lIGxlbmd0aFxuICB4LnJhbmtzIDwtcmFuayh4KSAgICAgICAgICMgR2V0cyB0aGUgcmFua3Mgb2YgeFxuICB5LnJhbmtzIDwtcmFuayh5KSAgICAgICAgICMgR2V0cyB0aGUgcmFua3Mgb2YgeVxuICBcbiAgbWVhbi54IDwtbWVhbih4LnJhbmtzKSAgICAjIEdldHMgdGhlIG1lYW4gb2YgdGhlIHJhbmtzIG9mIHhcbiAgbWVhbi55IDwtbWVhbih5LnJhbmtzKSAgICAjIEdldHMgdGhlIG1lYW4gb2YgdGhlIHJhbmtzIG9mIHlcbiAgXG4gIGNvdmFyaWFuY2UudGVybSA8LWNvdih4LnJhbmtzIC0gbWVhbi54LCB5IC0gbWVhbi55KSAgIyBHZXRzIHRoZSBjb3ZhcmlhbmNlIG9mIG1lYW5zIG9mIHRoZSByYW5rcyBvZiB4IGFuZCB5XG4gIFxuICBzZC54IDwtc2QoeC5yYW5rcykgICMgR2V0cyB0aGUgc3RhbmRhcmQgZGV2aWF0aW9uIG9mIHRoZSByYW5rcyBvZiB4XG4gIHNkLnkgPC1zZCh5LnJhbmtzKSAgIyBHZXRzIHRoZSBzdGFuZGFyZCBkZXZpYXRpb24gb2YgdGhlIHJhbmtzIG9mIHlcbiAgXG4gIHJhbmsuY29yIDwtIGNvdmFyaWFuY2UudGVybS8oc2QueCpzZC55KSAgICMgRGl2aWRlcyB0aGUgdmFyaWFuY2Ugb2YgdGhlIG1lYW5zIG9mIHRoZSByYW5rcyBvZiB4IGFuZCB5IGJ5IHRoZSBwcm9kdWN0IG9mIHRoZSBzdGFuZGFyZCBkZXZpYXRpb24gb2YgdGhlIHJhbmtzIG9mIHggYW5kIHlcbiAgXG4gIHJldHVybihyYW5rLmNvcil9ICAgIyBSZXR1cm5zIHRoZSBjb3JyZWxhdGlvbiBiZXR3ZWVuIHRoZSBzdGFuZGFyZCBkZXZpYXRpb24gb2YgdGhlIHJhbmtzIG9mIHggYW5kIHlcblxuP2NvdlxuYGBgIn0= -->
+<pre class="r"><code>rankcor &lt;-function(x, y){  
+  n &lt;-length(x)             # Gets the length of x
+  stopifnot(length(y)==n)   # Stops if x and y are not the same length
+  x.ranks &lt;-rank(x)         # Gets the ranks of x
+  y.ranks &lt;-rank(y)         # Gets the ranks of y
+  
+  mean.x &lt;-mean(x.ranks)    # Gets the mean of the ranks of x
+  mean.y &lt;-mean(y.ranks)    # Gets the mean of the ranks of y
+  
+  covariance.term &lt;-cov(x.ranks - mean.x, y - mean.y)  # Gets the covariance of means of the ranks of x and y
+  
+  sd.x &lt;-sd(x.ranks)  # Gets the standard deviation of the ranks of x
+  sd.y &lt;-sd(y.ranks)  # Gets the standard deviation of the ranks of y
+  
+  rank.cor &lt;- covariance.term/(sd.x*sd.y)   # Divides the variance of the means of the ranks of x and y by the product of the standard deviation of the ranks of x and y
+  
+  return(rank.cor)}   # Returns the correlation between the standard deviation of the ranks of x and y
+
+?cov</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
 <div id="problem-2" class="section level3">
 <h3>Problem 2</h3>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSBjKDIsIDQsIDYsIDgpXG55IDwtIGMoNjQsIDM2LCAxNiwgNClcblxucmFua2Nvcih4LHkpXG5gYGAifQ== -->
+<pre class="r"><code>x &lt;- c(2, 4, 6, 8)
+y &lt;- c(64, 36, 16, 4)
+
+rankcor(x,y)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIC0yMFxuIn0= -->
+<pre><code>[1] -20</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The rank correlation is -20</p>
 </div>
 <div id="problem-3" class="section level3">
 <h3>Problem 3</h3>
+<p>The answer is wrong because the answer must be between -1 and 1 for the problem where: 1 if there is a perfect, positive linear association -1 if there is a perfect, negative linear association</p>
 </div>
 <div id="problem-4" class="section level3">
 <h3>Problem 4</h3>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueDIgPC0gYygxLDIsMyw0KVxueTIgPC0gYygtMSwtMiwtMywtNClcblxucmFua2Nvcih4Mix5MilcbmBgYCJ9 -->
+<pre class="r"><code>x2 &lt;- c(1,2,3,4)
+y2 &lt;- c(-1,-2,-3,-4)
+
+rankcor(x2,y2)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIC0xXG4ifQ== -->
+<pre><code>[1] -1</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>I used 1,2,3,4 as my x and y. This works because a set has the same as itself, so they have a positive linear association.</p>
 </div>
 </div>
 <div id="part-ii" class="section level2">
@@ -1802,7 +1856,7 @@ summary {
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiSG9tZXdvcms1IgphdXRob3I6ICJSaWNoIENodSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyBIb21ld29yayA1OiBUbyBFcnIgaXMgSHVtYW47IHRvIFJhbmssIERpdmluZQoKIyMgUGFydCAwCgojIyMgUHJvYmxlbSAwCgpodHRwczovL2dpdGh1Yi5jb20vUmljaENodTEvbWEzNTAtaHc1CgojIyBQYXJ0IEkKCiMjIyBQcm9ibGVtIDEKCgoKIyMjIFByb2JsZW0gMgoKCgojIyMgUHJvYmxlbSAzCgoKCiMjIyBQcm9ibGVtIDQKCgojIyBQYXJ0IElJCgojIyMgUHJvYmxlbSA1CgoKCiMjIyBQcm9ibGVtIDYKCgoKIyMjIFByb2JsZW0gNwoKCgojIyBQYXJ0IElJSQoKIyMjIFByb2JsZW0gOAoKCgojIyMgUHJvYmxlbSA5CgoKCiMjIyBQcm9ibGVtIDEwCgoKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiSG9tZXdvcms1IgphdXRob3I6ICJSaWNoIENodSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyBIb21ld29yayA1OiBUbyBFcnIgaXMgSHVtYW47IHRvIFJhbmssIERpdmluZQoKIyMgUGFydCAwCgojIyMgUHJvYmxlbSAwCgpodHRwczovL2dpdGh1Yi5jb20vUmljaENodTEvbWEzNTAtaHc1CgojIyBQYXJ0IEkKCiMjIyBQcm9ibGVtIDEKCmBgYHtyfQpyYW5rY29yIDwtZnVuY3Rpb24oeCwgeSl7ICAKICBuIDwtbGVuZ3RoKHgpICAgICAgICAgICAgICMgR2V0cyB0aGUgbGVuZ3RoIG9mIHgKICBzdG9waWZub3QobGVuZ3RoKHkpPT1uKSAgICMgU3RvcHMgaWYgeCBhbmQgeSBhcmUgbm90IHRoZSBzYW1lIGxlbmd0aAogIHgucmFua3MgPC1yYW5rKHgpICAgICAgICAgIyBHZXRzIHRoZSByYW5rcyBvZiB4CiAgeS5yYW5rcyA8LXJhbmsoeSkgICAgICAgICAjIEdldHMgdGhlIHJhbmtzIG9mIHkKICAKICBtZWFuLnggPC1tZWFuKHgucmFua3MpICAgICMgR2V0cyB0aGUgbWVhbiBvZiB0aGUgcmFua3Mgb2YgeAogIG1lYW4ueSA8LW1lYW4oeS5yYW5rcykgICAgIyBHZXRzIHRoZSBtZWFuIG9mIHRoZSByYW5rcyBvZiB5CiAgCiAgY292YXJpYW5jZS50ZXJtIDwtY292KHgucmFua3MgLSBtZWFuLngsIHkgLSBtZWFuLnkpICAjIEdldHMgdGhlIGNvdmFyaWFuY2Ugb2YgbWVhbnMgb2YgdGhlIHJhbmtzIG9mIHggYW5kIHkKICAKICBzZC54IDwtc2QoeC5yYW5rcykgICMgR2V0cyB0aGUgc3RhbmRhcmQgZGV2aWF0aW9uIG9mIHRoZSByYW5rcyBvZiB4CiAgc2QueSA8LXNkKHkucmFua3MpICAjIEdldHMgdGhlIHN0YW5kYXJkIGRldmlhdGlvbiBvZiB0aGUgcmFua3Mgb2YgeQogIAogIHJhbmsuY29yIDwtIGNvdmFyaWFuY2UudGVybS8oc2QueCpzZC55KSAgICMgRGl2aWRlcyB0aGUgdmFyaWFuY2Ugb2YgdGhlIG1lYW5zIG9mIHRoZSByYW5rcyBvZiB4IGFuZCB5IGJ5IHRoZSBwcm9kdWN0IG9mIHRoZSBzdGFuZGFyZCBkZXZpYXRpb24gb2YgdGhlIHJhbmtzIG9mIHggYW5kIHkKICAKICByZXR1cm4ocmFuay5jb3IpfSAgICMgUmV0dXJucyB0aGUgY29ycmVsYXRpb24gYmV0d2VlbiB0aGUgc3RhbmRhcmQgZGV2aWF0aW9uIG9mIHRoZSByYW5rcyBvZiB4IGFuZCB5Cgo/Y292CmBgYAoKIyMjIFByb2JsZW0gMgoKYGBge3J9CnggPC0gYygyLCA0LCA2LCA4KQp5IDwtIGMoNjQsIDM2LCAxNiwgNCkKCnJhbmtjb3IoeCx5KQpgYGAKVGhlIHJhbmsgY29ycmVsYXRpb24gaXMgLTIwCgojIyMgUHJvYmxlbSAzCgpUaGUgYW5zd2VyIGlzIHdyb25nIGJlY2F1c2UgdGhlIGFuc3dlciBtdXN0IGJlIGJldHdlZW4gLTEgYW5kIDEgZm9yIHRoZSBwcm9ibGVtIHdoZXJlOiAKMSBpZiB0aGVyZSBpcyBhIHBlcmZlY3QsIHBvc2l0aXZlIGxpbmVhciBhc3NvY2lhdGlvbgotMSBpZiB0aGVyZSBpcyBhIHBlcmZlY3QsIG5lZ2F0aXZlIGxpbmVhciBhc3NvY2lhdGlvbgoKIyMjIFByb2JsZW0gNAoKYGBge3J9CngyIDwtIGMoMSwgMiwgMywgNCkKeTIgPC0gYygxLCAyLCAzLCA0KQoKcmFua2Nvcih4Mix5MikKYGBgCkkgdXNlZCAxLDIsMyw0IGFzIG15IHggYW5kIHkuIFRoaXMgd29ya3MgYmVjYXVzZSBhIHNldCBoYXMgdGhlIHNhbWUgYXMgaXRzZWxmLCBzbyB0aGV5IGhhdmUgYSBwb3NpdGl2ZSBsaW5lYXIgYXNzb2NpYXRpb24uCgojIyBQYXJ0IElJCgojIyMgUHJvYmxlbSA1CgoKCiMjIyBQcm9ibGVtIDYKCgoKIyMjIFByb2JsZW0gNwoKCgojIyBQYXJ0IElJSQoKIyMjIFByb2JsZW0gOAoKCgojIyMgUHJvYmxlbSA5CgoKCiMjIyBQcm9ibGVtIDEwCgoKCgo=</div>
 
 
 
